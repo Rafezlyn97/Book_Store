@@ -6,7 +6,7 @@ import 'package:flutter_application_1/model/bestSell_model.dart';
 import 'package:flutter_application_1/page/details/book_details.dart';
 import 'package:flutter_application_1/widget/big_text.dart';
 import 'package:flutter_application_1/widget/small_text.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class BestSellBook extends StatefulWidget {
   const BestSellBook({
@@ -109,7 +109,6 @@ class _BestSellBookState extends State<BestSellBook> {
                                   color: AppColor.mainColor,
                                   borderColor: AppColor.mainColor,
                                   rating: bestSell[index].rating,
-                                  isReadOnly: false,
                                   size: 15.0,
                                   filledIconData: Icons.star,
                                   halfFilledIconData: Icons.star_half,
@@ -117,7 +116,7 @@ class _BestSellBookState extends State<BestSellBook> {
                                   starCount: 5,
                                   allowHalfRating: true,
                                   spacing: 2.0,
-                                  onRated: (value) {},
+                                  onRatingChanged: (value) {},
                                 ),
                               ),
                             ],

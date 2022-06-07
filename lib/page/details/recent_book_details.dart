@@ -8,7 +8,7 @@ import 'package:flutter_application_1/widget/icon_text.dart';
 import 'package:flutter_application_1/widget/nav_bar.dart';
 import 'package:flutter_application_1/widget/rounded_button.dart';
 import 'package:flutter_application_1/widget/small_text.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 class RecentlyViewDetails extends StatelessWidget {
   final RecentlyView recentViewModel;
@@ -86,7 +86,6 @@ class RecentlyViewDetails extends StatelessWidget {
                             color: AppColor.mainColor,
                             borderColor: AppColor.mainColor,
                             rating: recentViewModel.rating,
-                            isReadOnly: false,
                             size: 15.0,
                             filledIconData: Icons.star,
                             halfFilledIconData: Icons.star_half,
@@ -94,7 +93,7 @@ class RecentlyViewDetails extends StatelessWidget {
                             starCount: 5,
                             allowHalfRating: true,
                             spacing: 2.0,
-                            onRated: (value) {},
+                            onRatingChanged: (value) {},
                           ),
                         ),
                         SizedBox(
