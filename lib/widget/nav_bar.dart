@@ -4,6 +4,7 @@ import 'package:flutter_application_1/page/home.dart';
 import 'package:flutter_application_1/page/our_book.dart';
 import 'package:flutter_application_1/page/user_account.dart';
 import 'package:flutter_application_1/widget/big_text.dart';
+import 'package:flutter_application_1/widget/small_text.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -62,6 +63,36 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.cases_rounded),
+            title: BigText(
+              text: "Careers",
+              color: Colors.black,
+              size: Dimension.font20,
+              align: TextAlign.left,
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.money),
+            title: BigText(
+              text: "Sell with Us",
+              color: Colors.black,
+              size: Dimension.font20,
+              align: TextAlign.left,
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.newspaper_rounded),
+            title: BigText(
+              text: "Newsletter",
+              color: Colors.black,
+              size: Dimension.font20,
+              align: TextAlign.left,
+            ),
+            onTap: () {},
+          ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.person),
@@ -77,6 +108,18 @@ class NavBar extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const UserAccount()),
               );
             },
+          ),
+          SizedBox(
+            height: Dimension.height100,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SmallText(text: "cog"),
+              SmallText(text: "Terms"),
+              SmallText(text: "Privacy"),
+            ],
           ),
         ],
       ),

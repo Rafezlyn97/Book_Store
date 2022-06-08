@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
 import 'package:flutter_application_1/constant/dimension.dart';
 import 'package:flutter_application_1/widget/big_text.dart';
+import 'package:flutter_application_1/widget/filter_page.dart';
 import 'package:flutter_application_1/widget/nav_bar.dart';
-import 'package:flutter_application_1/widget/small_text.dart';
+import 'package:flutter_application_1/widget/search_card.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -22,29 +23,30 @@ class _SearchPageState extends State<SearchPage> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
         actions: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  //   showSearch(
-                  //       context: context, delegate: CustomSearchDelegate());
-                },
-                icon: const Icon(Icons.search),
-              ),
-              SizedBox(
-                width: Dimension.height15,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.sort,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(
-                width: Dimension.height15,
-              ),
-            ],
+          IconButton(
+            onPressed: () {
+              // showSearch(
+              //     context: context, delegate: CustomSearchDelegate());
+            },
+            icon: const Icon(Icons.search),
+          ),
+          SizedBox(
+            width: Dimension.height15,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const FilterPage()),
+              );
+            },
+            child: const Icon(
+              Icons.sort,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            width: Dimension.height15,
           ),
         ],
       ),
@@ -160,69 +162,6 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class SearchCard extends StatelessWidget {
-  const SearchCard({
-    Key? key,
-    required this.color,
-    required this.image,
-    required this.title,
-  }) : super(key: key);
-  final Color color;
-  final String title;
-  final String image;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(Dimension.height10),
-      child: Container(
-        height: Dimension.height200,
-        width: Dimension.height170,
-        decoration: BoxDecoration(
-          color: color, //here
-          borderRadius: BorderRadius.circular(Dimension.radius20),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                top: Dimension.height10,
-                bottom: Dimension.height10,
-                left: Dimension.height05,
-                right: Dimension.height05,
-              ),
-              child: SmallText(
-                text: title,
-                size: Dimension.font15,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            Container(
-              height: Dimension.height120,
-              width: Dimension.height80,
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromARGB(97, 0, 0, 0),
-                    blurRadius: 10.0,
-                    offset: Offset(
-                      1.0,
-                      5.0,
-                    ),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(Dimension.radius15),
-                image: DecorationImage(image: AssetImage(image)), //here
-              ),
-            )
-          ],
         ),
       ),
     );
