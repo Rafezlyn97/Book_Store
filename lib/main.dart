@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
 import 'package:flutter_application_1/page/home.dart';
+import 'package:flutter_application_1/widget/filter_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         iconTheme: IconThemeData(color: AppColor.mainColor),
       ),
-      home: const HomePage(),
+      home: const FilterPage(),
     );
   }
 }

@@ -35,10 +35,10 @@ class _SearchPageState extends State<SearchPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const FilterPage()),
-              );
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const FilterPage()),
+              // );
             },
             child: const Icon(
               Icons.sort,

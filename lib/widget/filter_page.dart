@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
-import 'package:flutter_application_1/page/search.dart';
+import 'package:flutter_application_1/constant/dimension.dart';
+import 'package:flutter_application_1/model/avg_review_model.dart';
+import 'package:flutter_application_1/model/genre_filter_model.dart';
+import 'package:flutter_application_1/model/sort_model.dart';
+import 'package:flutter_application_1/widget/big_text.dart';
+import 'package:flutter_application_1/widget/rounded_button.dart';
+import 'package:flutter_application_1/widget/small_text.dart';
+import 'package:get/get.dart';
 
 class FilterPage extends StatefulWidget {
   const FilterPage({Key? key}) : super(key: key);
@@ -10,35 +17,35 @@ class FilterPage extends StatefulWidget {
 }
 
 class _FilterPageState extends State<FilterPage> {
-  int selectedValue = 0;
+  List sortFilter = SortFilter.sortFilter;
+  List genreFilter = GenreFilter.genreFilter;
+  List reviewFilter = ReviewFilter.reviewFilter;
+  int? groupValue;
+  int? reviewValue;
+  int? genreValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text(
-          'Filter',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
+        title: BigText(
+          text: "Filter",
+          fontWeight: FontWeight.bold,
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(top: 20.0, right: 10.0),
+            padding: EdgeInsets.only(
+                top: Dimension.height20, right: Dimension.height10),
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const SearchPage()));
               },
-              child: Text(
-                'Cancle',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w300,
-                ),
+              child: SmallText(
+                text: "Cancel",
               ),
             ),
           ),
@@ -49,216 +56,111 @@ class _FilterPageState extends State<FilterPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 19.0, vertical: 10.0),
-              child: Text(
-                'Sort by',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimension.height20,
+                    vertical: Dimension.height10),
+                child: SmallText(
+                  text: "Sort By",
+                  size: Dimension.font20,
+                )),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: sortFilter.length,
+              itemBuilder: (context, index) {
+                return RadioListTile(
+                  activeColor: AppColor.mainColor,
+                  title: SmallText(
+                    text: sortFilter.elementAt(index),
+                    align: TextAlign.left,
+                    color: Colors.black,
+                  ),
+                  value: index,
+                  groupValue: groupValue,
+                  onChanged: (val) {
+                    setState(() {
+                      groupValue = val as int;
+                    });
+                  },
+                );
+              },
             ),
-            Column(
-              children: [
-                RadioListTile(
-                  value: 0,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Featured Titles'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 0;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 1,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Price: Low to High'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 1;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 2,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Price: High to Low'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 2;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 3,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Publication Date'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 3;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 4,
-                  activeColor: AppColor.mainColor,
-                  title: Text('A-Z'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 4;
-                    });
-                  },
-                ),
-              ],
+            const Divider(),
+            SizedBox(
+              height: Dimension.height10,
             ),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 19.0, vertical: 10.0),
-              child: Text(
-                'Genre',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimension.height20,
+                    vertical: Dimension.height10),
+                child: SmallText(
+                  text: "Genre",
+                  size: Dimension.font20,
+                )),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: genreFilter.length,
+              itemBuilder: (context, index) {
+                return RadioListTile(
+                  activeColor: AppColor.mainColor,
+                  title: SmallText(
+                    text: genreFilter.elementAt(index),
+                    align: TextAlign.left,
+                    color: Colors.black,
+                  ),
+                  value: index,
+                  groupValue: genreValue,
+                  onChanged: (val) {
+                    setState(() {
+                      genreValue = val as int;
+                    });
+                  },
+                );
+              },
             ),
-            Column(
-              children: [
-                RadioListTile(
-                  value: 5,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Biography'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 5;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 6,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Business & Economics'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 6;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 7,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Children'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 7;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 8,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Cookery'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 8;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 9,
-                  activeColor: AppColor.mainColor,
-                  title: Text('Fiction'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 9;
-                    });
-                  },
-                ),
-              ],
+            const Divider(),
+            SizedBox(
+              height: Dimension.height10,
             ),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 19.0, vertical: 10.0),
-              child: Text(
-                'Average Customer Review',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
-                ),
-              ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimension.height20,
+                    vertical: Dimension.height10),
+                child: SmallText(
+                  text: "Average Customer Review",
+                  size: Dimension.font20,
+                )),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: reviewFilter.length,
+              itemBuilder: (context, index) {
+                return RadioListTile(
+                  activeColor: AppColor.mainColor,
+                  title: SmallText(
+                    text: reviewFilter.elementAt(index),
+                    align: TextAlign.left,
+                    color: Colors.black,
+                  ),
+                  value: index,
+                  groupValue: reviewValue,
+                  onChanged: (val) {
+                    setState(() {
+                      reviewValue = val as int;
+                    });
+                  },
+                );
+              },
             ),
-            Column(
-              children: [
-                RadioListTile(
-                  value: 10,
-                  activeColor: AppColor.mainColor,
-                  title: Text('5 Star'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 10;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 11,
-                  activeColor: AppColor.mainColor,
-                  title: Text('4 Star'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 12;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 13,
-                  activeColor: AppColor.mainColor,
-                  title: Text('3 Star'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 13;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 14,
-                  activeColor: AppColor.mainColor,
-                  title: Text('2 Star'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 14;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  value: 15,
-                  activeColor: AppColor.mainColor,
-                  title: Text('0-1 Star'),
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = 15;
-                    });
-                  },
-                ),
-              ],
+            SizedBox(
+              height: Dimension.height100,
             ),
           ],
+        ),
+      ),
+      bottomSheet: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimension.height50),
+        child: RoundedButton(
+          onPress: () {},
+          text: "Apply",
         ),
       ),
     );
