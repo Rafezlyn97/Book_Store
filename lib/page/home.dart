@@ -6,6 +6,7 @@ import 'package:flutter_application_1/page/book/features_book.dart';
 import 'package:flutter_application_1/page/book/genre_book.dart';
 import 'package:flutter_application_1/page/cart.dart';
 import 'package:flutter_application_1/page/search.dart';
+import 'package:flutter_application_1/page/search_menu.dart';
 import 'package:flutter_application_1/page/wish_list.dart';
 import 'package:flutter_application_1/widget/nav_bar.dart';
 import 'package:flutter_application_1/widget/newsletter.dart';
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const SearchPage(),
+            const SearchMainPage(),
             const WishListPage(),
             const CartPage(),
           ],

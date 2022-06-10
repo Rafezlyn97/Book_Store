@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
 import 'package:flutter_application_1/constant/dimension.dart';
-import 'package:flutter_application_1/model/book_model.dart';
+import 'package:flutter_application_1/model/bestSell_model.dart';
 import 'package:flutter_application_1/page/home.dart';
 import 'package:flutter_application_1/widget/big_text.dart';
 import 'package:flutter_application_1/widget/icon_text.dart';
@@ -10,10 +10,11 @@ import 'package:flutter_application_1/widget/rounded_button.dart';
 import 'package:flutter_application_1/widget/small_text.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
-class BookDetails extends StatelessWidget {
-  final Book bookModel;
+class BestSellDetails extends StatelessWidget {
+  final BestSell bestSellModel;
 
-  const BookDetails({Key? key, required this.bookModel}) : super(key: key);
+  const BestSellDetails({Key? key, required this.bestSellModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class BookDetails extends StatelessWidget {
                       ],
                       borderRadius: BorderRadius.circular(Dimension.radius15),
                       image: DecorationImage(
-                        image: AssetImage(bookModel.image),
+                        image: AssetImage(bestSellModel.image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -63,21 +64,17 @@ class BookDetails extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: Dimension.width250,
-                      child: BigText(
-                        text: bookModel.title,
-                        fontWeight: FontWeight.bold,
-                        size: 20,
-                        align: TextAlign.left,
-                        overflow: TextOverflow.clip,
-                      ),
+                    BigText(
+                      text: bestSellModel.title,
+                      fontWeight: FontWeight.bold,
+                      size: 20,
+                      align: TextAlign.justify,
                     ),
                     SizedBox(
                       height: Dimension.height05,
                     ),
                     SmallText(
-                      text: bookModel.author,
+                      text: bestSellModel.author,
                       size: Dimension.font12,
                     ),
                     Row(
@@ -88,7 +85,7 @@ class BookDetails extends StatelessWidget {
                           child: SmoothStarRating(
                             color: AppColor.mainColor,
                             borderColor: AppColor.mainColor,
-                            rating: bookModel.rating,
+                            rating: bestSellModel.rating,
                             size: 15.0,
                             filledIconData: Icons.star,
                             halfFilledIconData: Icons.star_half,
@@ -103,7 +100,7 @@ class BookDetails extends StatelessWidget {
                           width: Dimension.height10,
                         ),
                         SmallText(
-                          text: bookModel.rating.toString(),
+                          text: bestSellModel.rating.toString(),
                           size: Dimension.font12,
                         ),
                       ],

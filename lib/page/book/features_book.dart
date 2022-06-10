@@ -42,6 +42,7 @@ class FeaturesBook extends StatelessWidget {
             ),
           ],
           options: CarouselOptions(
+            autoPlay: true,
             viewportFraction: 0.5,
             height: Dimension.height350,
             enlargeCenterPage: true,

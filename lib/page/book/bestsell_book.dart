@@ -3,7 +3,7 @@ import 'package:flutter_application_1/constant/color.dart';
 import 'package:flutter_application_1/constant/dimension.dart';
 //import 'package:flutter_application_1/list/bestSell_list.dart';
 import 'package:flutter_application_1/model/bestSell_model.dart';
-import 'package:flutter_application_1/page/details/book_details.dart';
+import 'package:flutter_application_1/page/details/bestSell_details.dart';
 //import 'package:flutter_application_1/page/details/book_details.dart';
 import 'package:flutter_application_1/widget/big_text.dart';
 import 'package:flutter_application_1/widget/small_text.dart';
