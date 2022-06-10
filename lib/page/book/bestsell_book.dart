@@ -47,6 +47,23 @@ class _BestSellBookState extends State<BestSellBook> {
             child: FutureBuilder<List<BestSell>>(
               future: futureBestSell,
               builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    padding: const EdgeInsets.all(16),
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator(),
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  return Container(
+                    padding: const EdgeInsets.all(16),
+                    alignment: Alignment.center,
+                    // Show default error thrown by API
+                    child: Text(snapshot.error.toString()),
+                  );
+                }
+
                 if (snapshot.hasData) {
                   return Column(
                     children: [
